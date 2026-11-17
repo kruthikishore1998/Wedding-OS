@@ -1,0 +1,8 @@
+snapshots:
+  - name: snap_quotes
+    relation: source('raw', 'quotes')
+    config:
+      schema: snapshots
+      unique_key: quote_id
+      strategy: timestamp
+      updated_at: updated_at
