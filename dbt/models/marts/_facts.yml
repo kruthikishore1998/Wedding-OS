@@ -1,0 +1,25 @@
+models:
+  - name: fct_quote_all_in
+    description: One row per quote with the all-in price (sum of line items) and fee breakdown.
+    columns:
+      - name: quote_id
+        data_tests: [unique, not_null]
+      - name: venue_id
+        data_tests:
+          - relationships:
+              arguments: {to: ref('dim_venue'), field: venue_id}
+      - name: vendor_id
+        data_tests:
+          - relationships:
+              arguments: {to: ref('dim_vendor'), field: vendor_id}
+      - name: all_in_total
+        data_tests: [not_null, non_negative]
+  - name: fct_quote_line_items
+    description: One row per quote line item. Incremental on updated_at.
+    columns:
+      - name: line_item_id
+        data_tests: [unique, not_null]
+      - name: line_amount
+        data_tests: [non_negative]
+  - name: fct_quote_versions
+    description: One row per quote version, from the snap_quotes SCD Type 2 snapshot.

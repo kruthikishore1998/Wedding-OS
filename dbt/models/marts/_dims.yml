@@ -1,0 +1,11 @@
+models:
+  - name: dim_venue
+    description: One row per venue, with the constraint checklist (caterer, open flame, curfew, alcohol).
+    columns:
+      - name: venue_id
+        data_tests: [unique, not_null]
+  - name: dim_vendor
+    description: One row per vendor (caterer, decor, DJ, photographer, mehndi, pandit).
+    columns:
+      - name: vendor_id
+        data_tests: [unique, not_null]

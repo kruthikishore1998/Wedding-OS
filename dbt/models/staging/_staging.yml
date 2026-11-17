@@ -1,0 +1,21 @@
+models:
+  - name: stg_quotes
+    description: One row per quote from raw.quotes. A quote belongs to a venue or a vendor.
+    columns:
+      - name: quote_id
+        data_tests: [unique, not_null]
+      - name: quote_status
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [received, negotiating, accepted, declined, expired]
+  - name: stg_quote_line_items
+    description: One row per line item on a quote.
+    columns:
+      - name: line_item_id
+        data_tests: [unique, not_null]
+      - name: item_type
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [base, per_guest, cleaning, overtime, service_fee, tax, gratuity]
